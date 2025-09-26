@@ -9,6 +9,8 @@ Gestore prodotti (Admin): => Interfaccia gestore
 Aggiungi => Aggiunge prodotti alla lista
 Modifica => Modifica prodotti alla lista
 Elimina => Elimina prodotti alla lista
+Ricerca => Tramite codice o nome del prodotto
+Accesso con password
 
 ----------------
 
@@ -16,6 +18,7 @@ Gestore prodotti (Client): => Interfaccia gestore
 Aggiungi => Aggiungi prodotto al carrello (Più prodotti aggiungibili)
 Modifica => Modifica quantità prodotti aggiunti
 Elimina => Rimuove prodotto dal carrello.
+Annulla => Reset del carrello e prezzo
 
 ----------------
 
