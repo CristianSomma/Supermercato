@@ -5,14 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Supermercato_SOMMA
+namespace Supermercato_SOMMA.Models
 {
-    abstract class Product
+    public abstract class Product
     {
         private string _name, _code;
         private string? _brand;
         private ProductCategory _category;
-        private float _price, _weight;
+        private float _price;
+        private float? _weight;
+        private DateTime _expiringDate;
+        private readonly Discount _discount;
         private uint _avaiableQuantity;
 
         public string Name
@@ -20,7 +23,7 @@ namespace Supermercato_SOMMA
             get => _name;
             private set
             {
-                if (String.IsNullOrWhiteSpace(value))
+                if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentNullException("The product name cannot be null or just white spaces.");
 
                 _name = value.ToUpper();
@@ -64,11 +67,12 @@ namespace Supermercato_SOMMA
             }
         }
 
-        public float Weight
+        public float? Weight
         {
             get => _weight;
             private set
             {
+                
                 if (value <= 0 || value > 99)
                     throw new ArgumentException("The product's weight must be positive and less than 100kg.");
 
@@ -76,14 +80,28 @@ namespace Supermercato_SOMMA
             }
         }
 
+        public DateTime ExpiringDate
+        {
+            get => _expiringDate;
+            private set
+            {
+                DateTime minimumDate = new DateTime(2020, 1, 1);
+
+                if (value < minimumDate)
+                    throw new ArgumentOutOfRangeException($"The expiring date must be after {minimumDate.ToString()}");
+            }
+        }
+
+        public Discount Discount
+        {
+            get => _discount;
+        }
+
         public uint AvaiableQuantity
         {
             get => _avaiableQuantity;
             private set
             {
-                if (value <= 0)
-                    throw new ArgumentException("The product's avaible quantity must be positive.");
-
                 _avaiableQuantity = value;
             }
         }
