@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Supermercato_SOMMA.Models
 {
-    public abstract class Product
+    public class Product
     {
         private string _name, _code;
         private string? _brand;
@@ -15,8 +15,29 @@ namespace Supermercato_SOMMA.Models
         private float _price;
         private float? _weight;
         private DateTime _expiringDate;
-        private readonly Discount _discount;
-        private uint _avaiableQuantity;
+        private uint _discountPercentage;
+        private uint _availableQuantity;
+
+        public Product(
+            string name,
+            ProductCategory category,
+            float price,
+            DateTime expiringDate,
+            uint availableQuantity,
+            string? brand = null,
+            float? weight = null,
+            uint discountPercentage = 0
+            )
+        {
+            Name = name;
+            Brand = brand;
+            Category = category;
+            Price = price;
+            Weight = weight;
+            ExpiringDate = expiringDate;
+            DiscountPercentage = discountPercentage;
+            AvailableQuantity = availableQuantity;
+        }
 
         public string Name
         {
@@ -44,13 +65,6 @@ namespace Supermercato_SOMMA.Models
             get => _category;
             private set
             {
-                int categoriesCount = Enum.GetValues(typeof(ProductCategory)).Length;
-
-                if (value == ProductCategory.SelezionaCategoria)
-                    throw new ArgumentException("The category of the product cannot be the standard value.");
-                else if ((int)value > categoriesCount)
-                    throw new ArgumentException("The category enum element must exist.");
-
                 _category = value;
             }
         }
@@ -72,11 +86,13 @@ namespace Supermercato_SOMMA.Models
             get => _weight;
             private set
             {
-                
-                if (value <= 0 || value > 99)
+                if (value is null)
+                    _weight = value;
+                else if (value <= 0 || value > 99)
                     throw new ArgumentException("The product's weight must be positive and less than 100kg.");
+                else
+                    _weight = value;
 
-                _weight = value;
             }
         }
 
@@ -89,30 +105,35 @@ namespace Supermercato_SOMMA.Models
 
                 if (value < minimumDate)
                     throw new ArgumentOutOfRangeException($"The expiring date must be after {minimumDate.ToString()}");
+
+                _expiringDate = value;
             }
         }
 
-        public Discount Discount
+        public uint DiscountPercentage
         {
-            get => _discount;
-        }
-
-        public uint AvaiableQuantity
-        {
-            get => _avaiableQuantity;
+            get => _discountPercentage;
             private set
             {
-                _avaiableQuantity = value;
+                if (value > 100)
+                    throw new ArgumentException("The discount percentage must be a positive value and between 0 and 100.");
+
+                _discountPercentage = value;
+            }
+        }
+
+        public uint AvailableQuantity
+        {
+            get => _availableQuantity;
+            private set
+            {
+                _availableQuantity = value;
             }
         }
 
         public string Code
         {
             get => _code;
-            private set
-            {
-                throw new NotImplementedException("Implement the code property of Product.cs");
-            }
         }
     }
 

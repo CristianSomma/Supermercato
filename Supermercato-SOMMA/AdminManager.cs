@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Supermercato_SOMMA
 {
-    public class AdminManager : IManager
+    public class AdminManager
     {
         private readonly BindingList<Product> _products;
 
@@ -18,9 +18,29 @@ namespace Supermercato_SOMMA
             _products = new BindingList<Product>();
         }
 
-        public void AddProduct(Product productToAdd)
+        public bool AddProduct(Product productToAdd)
         {
+            if (_products.Contains(productToAdd))
+                return false;
 
+            _products.Add(productToAdd);
+            return true;
+        }
+
+        public bool EditProduct(Product productToEdit, Product newProductVersion)
+        {
+            int indexOfProductToEdit = _products.IndexOf(productToEdit);
+
+            if (indexOfProductToEdit == -1)
+                return false;
+
+            _products[indexOfProductToEdit] = newProductVersion;
+            return true;
+        }
+
+        public bool RemoveProduct(Product productToRemove)
+        {
+            return _products.Remove(productToRemove);
         }
     }
 }
