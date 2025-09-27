@@ -37,6 +37,7 @@ namespace Supermercato_SOMMA.Models
             ExpiringDate = expiringDate;
             DiscountPercentage = discountPercentage;
             AvailableQuantity = availableQuantity;
+            _code = CreateCode();
         }
 
         public string Name
@@ -65,6 +66,9 @@ namespace Supermercato_SOMMA.Models
             get => _category;
             private set
             {
+                if (value == ProductCategory.SelezionaCategoria)
+                    throw new ArgumentException("The standard category isn't valid.");
+
                 _category = value;
             }
         }
@@ -135,17 +139,30 @@ namespace Supermercato_SOMMA.Models
         {
             get => _code;
         }
+
+        private string CreateCode()
+        {
+            Random random = new Random(Environment.TickCount);
+            
+            string code = $"{(int)_category}-";
+
+            for(int i = code.Length; i<10; i++)
+            {
+                code += random.Next(0, 10);
+            }
+
+            return code;
+        }
     }
 
     public enum ProductCategory
     {
-        SelezionaCategoria,
-        AlimentariFreschi,
-        AlimentariConfezionati,
-        Surgelati,
-        PerLaCasa,
-        CuraPersonale,
-        AnimaliDomestici,
-        Altro
+        FreshFood,
+        PackagedFood,
+        FrozenFood,
+        Household,
+        PersonalCare,
+        PetCare,
+        Other
     }
 }

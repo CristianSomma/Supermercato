@@ -1,3 +1,5 @@
+using Supermercato_SOMMA.Models;
+
 namespace Supermercato_SOMMA
 {
     public partial class Form1 : Form
@@ -5,6 +7,17 @@ namespace Supermercato_SOMMA
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Product test = new(
+                "a",
+                ProductCategory.Surgelati,
+                12f,
+                DateTime.Today,
+                10
+                );
         }
     }
 }
