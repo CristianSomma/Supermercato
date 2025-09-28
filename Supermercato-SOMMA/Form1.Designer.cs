@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pnl_title = new Panel();
             lbl_title = new Label();
             dtg_adminTable = new DataGridView();
@@ -43,9 +43,9 @@
             pnl_controlsContainer = new Panel();
             pnl_addControlsContainer = new Panel();
             pnl_nonFoodProperties = new Panel();
-            checkBox2 = new CheckBox();
+            chc_productFragile = new CheckBox();
             label12 = new Label();
-            numericUpDown5 = new NumericUpDown();
+            nmr_productAgeRestriction = new NumericUpDown();
             btn_AddProduct = new Button();
             lbl_nonFoodProperties = new Label();
             lbl_foodProperties = new Label();
@@ -57,39 +57,39 @@
             label5 = new Label();
             panel4 = new Panel();
             label6 = new Label();
-            checkBox1 = new CheckBox();
-            numericUpDown1 = new NumericUpDown();
+            chc_productIsDiscounted = new CheckBox();
+            nmr_productDiscountPercentage = new NumericUpDown();
             label4 = new Label();
             label2 = new Label();
             panel3 = new Panel();
-            numericUpDown3 = new NumericUpDown();
+            nmr_productStock = new NumericUpDown();
             label7 = new Label();
             label3 = new Label();
             panel1 = new Panel();
-            numericUpDown2 = new NumericUpDown();
+            nmr_productPrice = new NumericUpDown();
             panel2 = new Panel();
-            comboBox1 = new ComboBox();
+            cmb_productCategory = new ComboBox();
             label1 = new Label();
             pnl_nameBrandInputs = new Panel();
             label11 = new Label();
-            textBox2 = new TextBox();
+            txt_productBrand = new TextBox();
             label8 = new Label();
-            textBox1 = new TextBox();
+            txt_productName = new TextBox();
             pnl_title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtg_adminTable).BeginInit();
             mns_controlsChooser.SuspendLayout();
             pnl_controlsContainer.SuspendLayout();
             pnl_addControlsContainer.SuspendLayout();
             pnl_nonFoodProperties.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nmr_productAgeRestriction).BeginInit();
             pnl_foodProperties.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown4).BeginInit();
             panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nmr_productDiscountPercentage).BeginInit();
             panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nmr_productStock).BeginInit();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nmr_productPrice).BeginInit();
             panel2.SuspendLayout();
             pnl_nameBrandInputs.SuspendLayout();
             SuspendLayout();
@@ -122,14 +122,14 @@
             dtg_adminTable.AllowUserToResizeRows = false;
             dtg_adminTable.BackgroundColor = SystemColors.Window;
             dtg_adminTable.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dtg_adminTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dtg_adminTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dtg_adminTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtg_adminTable.Dock = DockStyle.Top;
             dtg_adminTable.GridColor = SystemColors.ControlDarkDark;
@@ -137,14 +137,14 @@
             dtg_adminTable.MultiSelect = false;
             dtg_adminTable.Name = "dtg_adminTable";
             dtg_adminTable.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dtg_adminTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dtg_adminTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dtg_adminTable.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dtg_adminTable.ScrollBars = ScrollBars.Vertical;
             dtg_adminTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -239,23 +239,23 @@
             // pnl_nonFoodProperties
             // 
             pnl_nonFoodProperties.BackColor = SystemColors.MenuBar;
-            pnl_nonFoodProperties.Controls.Add(checkBox2);
+            pnl_nonFoodProperties.Controls.Add(chc_productFragile);
             pnl_nonFoodProperties.Controls.Add(label12);
-            pnl_nonFoodProperties.Controls.Add(numericUpDown5);
+            pnl_nonFoodProperties.Controls.Add(nmr_productAgeRestriction);
             pnl_nonFoodProperties.Font = new Font("Tahoma", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             pnl_nonFoodProperties.Location = new Point(676, 122);
             pnl_nonFoodProperties.Name = "pnl_nonFoodProperties";
             pnl_nonFoodProperties.Size = new Size(300, 153);
             pnl_nonFoodProperties.TabIndex = 14;
             // 
-            // checkBox2
+            // chc_productFragile
             // 
-            checkBox2.Location = new Point(15, 10);
-            checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(266, 32);
-            checkBox2.TabIndex = 9;
-            checkBox2.Text = "Fragile";
-            checkBox2.UseVisualStyleBackColor = true;
+            chc_productFragile.Location = new Point(15, 10);
+            chc_productFragile.Name = "chc_productFragile";
+            chc_productFragile.Size = new Size(266, 32);
+            chc_productFragile.TabIndex = 9;
+            chc_productFragile.Text = "Fragile";
+            chc_productFragile.UseVisualStyleBackColor = true;
             // 
             // label12
             // 
@@ -266,15 +266,15 @@
             label12.TabIndex = 13;
             label12.Text = "Age restriction:*";
             // 
-            // numericUpDown5
+            // nmr_productAgeRestriction
             // 
-            numericUpDown5.Location = new Point(15, 103);
-            numericUpDown5.Maximum = new decimal(new int[] { 17, 0, 0, 0 });
-            numericUpDown5.Name = "numericUpDown5";
-            numericUpDown5.Size = new Size(266, 35);
-            numericUpDown5.TabIndex = 11;
-            numericUpDown5.TextAlign = HorizontalAlignment.Center;
-            numericUpDown5.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            nmr_productAgeRestriction.Location = new Point(15, 103);
+            nmr_productAgeRestriction.Maximum = new decimal(new int[] { 17, 0, 0, 0 });
+            nmr_productAgeRestriction.Name = "nmr_productAgeRestriction";
+            nmr_productAgeRestriction.Size = new Size(266, 35);
+            nmr_productAgeRestriction.TabIndex = 11;
+            nmr_productAgeRestriction.TextAlign = HorizontalAlignment.Center;
+            nmr_productAgeRestriction.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // btn_AddProduct
             // 
@@ -376,8 +376,8 @@
             // 
             panel4.BackColor = SystemColors.MenuBar;
             panel4.Controls.Add(label6);
-            panel4.Controls.Add(checkBox1);
-            panel4.Controls.Add(numericUpDown1);
+            panel4.Controls.Add(chc_productIsDiscounted);
+            panel4.Controls.Add(nmr_productDiscountPercentage);
             panel4.Font = new Font("Tahoma", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             panel4.Location = new Point(28, 215);
             panel4.Name = "panel4";
@@ -393,24 +393,24 @@
             label6.TabIndex = 8;
             label6.Text = "Percentage:*";
             // 
-            // checkBox1
+            // chc_productIsDiscounted
             // 
-            checkBox1.Location = new Point(87, 16);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(126, 32);
-            checkBox1.TabIndex = 0;
-            checkBox1.Text = "Discount";
-            checkBox1.UseVisualStyleBackColor = true;
+            chc_productIsDiscounted.Location = new Point(87, 16);
+            chc_productIsDiscounted.Name = "chc_productIsDiscounted";
+            chc_productIsDiscounted.Size = new Size(126, 32);
+            chc_productIsDiscounted.TabIndex = 0;
+            chc_productIsDiscounted.Text = "Discount";
+            chc_productIsDiscounted.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown1
+            // nmr_productDiscountPercentage
             // 
-            numericUpDown1.Location = new Point(424, 13);
-            numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(175, 35);
-            numericUpDown1.TabIndex = 7;
-            numericUpDown1.TextAlign = HorizontalAlignment.Center;
-            numericUpDown1.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            nmr_productDiscountPercentage.Location = new Point(424, 13);
+            nmr_productDiscountPercentage.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nmr_productDiscountPercentage.Name = "nmr_productDiscountPercentage";
+            nmr_productDiscountPercentage.Size = new Size(175, 35);
+            nmr_productDiscountPercentage.TabIndex = 7;
+            nmr_productDiscountPercentage.TextAlign = HorizontalAlignment.Center;
+            nmr_productDiscountPercentage.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // label4
             // 
@@ -435,7 +435,7 @@
             // panel3
             // 
             panel3.BackColor = SystemColors.MenuBar;
-            panel3.Controls.Add(numericUpDown3);
+            panel3.Controls.Add(nmr_productStock);
             panel3.Controls.Add(label7);
             panel3.Font = new Font("Tahoma", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             panel3.Location = new Point(676, 32);
@@ -443,16 +443,16 @@
             panel3.Size = new Size(300, 60);
             panel3.TabIndex = 2;
             // 
-            // numericUpDown3
+            // nmr_productStock
             // 
-            numericUpDown3.Location = new Point(131, 11);
-            numericUpDown3.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
-            numericUpDown3.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            numericUpDown3.Name = "numericUpDown3";
-            numericUpDown3.Size = new Size(150, 35);
-            numericUpDown3.TabIndex = 9;
-            numericUpDown3.TextAlign = HorizontalAlignment.Center;
-            numericUpDown3.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            nmr_productStock.Location = new Point(131, 11);
+            nmr_productStock.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
+            nmr_productStock.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nmr_productStock.Name = "nmr_productStock";
+            nmr_productStock.Size = new Size(150, 35);
+            nmr_productStock.TabIndex = 9;
+            nmr_productStock.TextAlign = HorizontalAlignment.Center;
+            nmr_productStock.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // label7
             // 
@@ -476,41 +476,41 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.MenuBar;
-            panel1.Controls.Add(numericUpDown2);
+            panel1.Controls.Add(nmr_productPrice);
             panel1.Font = new Font("Tahoma", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             panel1.Location = new Point(352, 122);
             panel1.Name = "panel1";
             panel1.Size = new Size(300, 60);
             panel1.TabIndex = 5;
             // 
-            // numericUpDown2
+            // nmr_productPrice
             // 
-            numericUpDown2.DecimalPlaces = 2;
-            numericUpDown2.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            numericUpDown2.Location = new Point(25, 12);
-            numericUpDown2.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(250, 35);
-            numericUpDown2.TabIndex = 8;
-            numericUpDown2.TextAlign = HorizontalAlignment.Center;
+            nmr_productPrice.DecimalPlaces = 2;
+            nmr_productPrice.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
+            nmr_productPrice.Location = new Point(25, 12);
+            nmr_productPrice.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
+            nmr_productPrice.Name = "nmr_productPrice";
+            nmr_productPrice.Size = new Size(250, 35);
+            nmr_productPrice.TabIndex = 8;
+            nmr_productPrice.TextAlign = HorizontalAlignment.Center;
             // 
             // panel2
             // 
             panel2.BackColor = SystemColors.MenuBar;
-            panel2.Controls.Add(comboBox1);
+            panel2.Controls.Add(cmb_productCategory);
             panel2.Font = new Font("Tahoma", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             panel2.Location = new Point(352, 32);
             panel2.Name = "panel2";
             panel2.Size = new Size(300, 60);
             panel2.TabIndex = 2;
             // 
-            // comboBox1
+            // cmb_productCategory
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(25, 10);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(250, 36);
-            comboBox1.TabIndex = 4;
+            cmb_productCategory.FormattingEnabled = true;
+            cmb_productCategory.Location = new Point(25, 10);
+            cmb_productCategory.Name = "cmb_productCategory";
+            cmb_productCategory.Size = new Size(250, 36);
+            cmb_productCategory.TabIndex = 4;
             // 
             // label1
             // 
@@ -526,9 +526,9 @@
             // 
             pnl_nameBrandInputs.BackColor = SystemColors.MenuBar;
             pnl_nameBrandInputs.Controls.Add(label11);
-            pnl_nameBrandInputs.Controls.Add(textBox2);
+            pnl_nameBrandInputs.Controls.Add(txt_productBrand);
             pnl_nameBrandInputs.Controls.Add(label8);
-            pnl_nameBrandInputs.Controls.Add(textBox1);
+            pnl_nameBrandInputs.Controls.Add(txt_productName);
             pnl_nameBrandInputs.Font = new Font("Tahoma", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             pnl_nameBrandInputs.Location = new Point(28, 32);
             pnl_nameBrandInputs.Name = "pnl_nameBrandInputs";
@@ -544,12 +544,12 @@
             label11.TabIndex = 16;
             label11.Text = "Brand:";
             // 
-            // textBox2
+            // txt_productBrand
             // 
-            textBox2.Location = new Point(100, 101);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(185, 35);
-            textBox2.TabIndex = 15;
+            txt_productBrand.Location = new Point(100, 101);
+            txt_productBrand.Name = "txt_productBrand";
+            txt_productBrand.Size = new Size(185, 35);
+            txt_productBrand.TabIndex = 15;
             // 
             // label8
             // 
@@ -560,12 +560,12 @@
             label8.TabIndex = 14;
             label8.Text = "Name:*";
             // 
-            // textBox1
+            // txt_productName
             // 
-            textBox1.Location = new Point(100, 11);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(185, 35);
-            textBox1.TabIndex = 0;
+            txt_productName.Location = new Point(100, 11);
+            txt_productName.Name = "txt_productName";
+            txt_productName.Size = new Size(185, 35);
+            txt_productName.TabIndex = 0;
             // 
             // AdminForm
             // 
@@ -593,18 +593,18 @@
             pnl_addControlsContainer.PerformLayout();
             pnl_nonFoodProperties.ResumeLayout(false);
             pnl_nonFoodProperties.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nmr_productAgeRestriction).EndInit();
             pnl_foodProperties.ResumeLayout(false);
             pnl_foodProperties.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown4).EndInit();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nmr_productDiscountPercentage).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nmr_productStock).EndInit();
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nmr_productPrice).EndInit();
             panel2.ResumeLayout(false);
             pnl_nameBrandInputs.ResumeLayout(false);
             pnl_nameBrandInputs.PerformLayout();
@@ -626,18 +626,18 @@
         private Panel pnl_nameBrandInputs;
         private Label label3;
         private Panel panel2;
-        private ComboBox comboBox1;
+        private ComboBox cmb_productCategory;
         private Label label2;
         private Panel panel1;
         private Label label4;
         private Panel panel3;
-        private CheckBox checkBox1;
-        private NumericUpDown numericUpDown1;
-        private NumericUpDown numericUpDown2;
+        private CheckBox chc_productIsDiscounted;
+        private NumericUpDown nmr_productDiscountPercentage;
+        private NumericUpDown nmr_productPrice;
         private Label label5;
         private Panel panel4;
         private Label label6;
-        private NumericUpDown numericUpDown3;
+        private NumericUpDown nmr_productStock;
         private Label label7;
         private ToolStripMenuItem mni_foodProduct;
         private ToolStripMenuItem mni_nonFoodProduct;
@@ -648,15 +648,15 @@
         private Label label9;
         private Label label10;
         private DateTimePicker dateTimePicker1;
-        private TextBox textBox1;
+        private TextBox txt_productName;
         private Label label8;
         private Button btn_AddProduct;
         private Label label11;
-        private TextBox textBox2;
+        private TextBox txt_productBrand;
         private Label lbl_nonFoodProperties;
         private Panel pnl_nonFoodProperties;
         private Label label12;
-        private NumericUpDown numericUpDown5;
-        private CheckBox checkBox2;
+        private NumericUpDown nmr_productAgeRestriction;
+        private CheckBox chc_productFragile;
     }
 }
