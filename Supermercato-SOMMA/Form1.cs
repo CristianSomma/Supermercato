@@ -11,13 +11,29 @@ namespace Supermercato_SOMMA
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            AdminManager adminManager = new AdminManager();
+            
             Product test = new(
                 "a",
-                ProductCategory.Surgelati,
+                ProductCategory.FrozenFood,
                 12f,
                 DateTime.Today,
                 10
                 );
+
+            adminManager.AddProduct(test);
+
+            Product newTestVersion = new(
+                "A",
+                ProductCategory.FreshFood,
+                10.5f,
+                DateTime.Today,
+                10
+                );
+
+            adminManager.EditProduct(test, newTestVersion);
+
+            return;
         }
     }
 }

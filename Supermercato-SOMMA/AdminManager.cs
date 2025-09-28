@@ -18,6 +18,11 @@ namespace Supermercato_SOMMA
             _products = new BindingList<Product>();
         }
 
+        public BindingList<Product> Products
+        {
+            get => _products;
+        }
+
         public bool AddProduct(Product productToAdd)
         {
             if (_products.Contains(productToAdd))
@@ -34,6 +39,8 @@ namespace Supermercato_SOMMA
             if (indexOfProductToEdit == -1)
                 return false;
 
+            // FIXME: SE PRODOTTO E' MOLTO SIMILE NON CAMBIARE CODICE
+
             _products[indexOfProductToEdit] = newProductVersion;
             return true;
         }
@@ -42,5 +49,6 @@ namespace Supermercato_SOMMA
         {
             return _products.Remove(productToRemove);
         }
+
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Supermercato_SOMMA.Models
 {
-    public class Product
+    public abstract class Product
     {
         private string _name, _code;
         private string? _brand;
@@ -16,27 +16,18 @@ namespace Supermercato_SOMMA.Models
         private float? _weight;
         private DateTime _expiringDate;
         private uint _discountPercentage;
-        private uint _availableQuantity;
+        private uint _stock;
 
-        public Product(
-            string name,
-            ProductCategory category,
-            float price,
-            DateTime expiringDate,
-            uint availableQuantity,
-            string? brand = null,
-            float? weight = null,
-            uint discountPercentage = 0
-            )
+        public Product(ProductOptions options)
         {
-            Name = name;
-            Brand = brand;
-            Category = category;
-            Price = price;
-            Weight = weight;
-            ExpiringDate = expiringDate;
-            DiscountPercentage = discountPercentage;
-            AvailableQuantity = availableQuantity;
+            Name = options.Name;
+            Brand = options.Brand;
+            Category = options.Category;
+            Price = options.Price;
+            Weight = options.Weight;
+            ExpiringDate = options.ExpiringDate;
+            DiscountPercentage = options.DiscountPercentage;
+            Stock = options.Stock;
             _code = CreateCode();
         }
 
@@ -66,7 +57,7 @@ namespace Supermercato_SOMMA.Models
             get => _category;
             private set
             {
-                if (value == ProductCategory.SelezionaCategoria)
+                if (value == ProductCategory.SelectCategory)
                     throw new ArgumentException("The standard category isn't valid.");
 
                 _category = value;
@@ -126,12 +117,12 @@ namespace Supermercato_SOMMA.Models
             }
         }
 
-        public uint AvailableQuantity
+        public uint Stock
         {
-            get => _availableQuantity;
+            get => _stock;
             private set
             {
-                _availableQuantity = value;
+                _stock = value;
             }
         }
 
@@ -144,7 +135,7 @@ namespace Supermercato_SOMMA.Models
         {
             Random random = new Random(Environment.TickCount);
             
-            string code = $"{(int)_category}-";
+            string code = $"0{(int)_category}-";
 
             for(int i = code.Length; i<10; i++)
             {
@@ -157,6 +148,7 @@ namespace Supermercato_SOMMA.Models
 
     public enum ProductCategory
     {
+        SelectCategory,
         FreshFood,
         PackagedFood,
         FrozenFood,
