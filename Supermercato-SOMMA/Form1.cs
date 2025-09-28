@@ -1,3 +1,4 @@
+using Supermercato_SOMMA.Managers;
 using Supermercato_SOMMA.Models;
 
 namespace Supermercato_SOMMA

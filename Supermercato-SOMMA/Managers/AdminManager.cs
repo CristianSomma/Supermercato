@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Supermercato_SOMMA
+namespace Supermercato_SOMMA.Managers
 {
     public class AdminManager
     {
@@ -34,6 +34,9 @@ namespace Supermercato_SOMMA
 
         public bool EditProduct(Product productToEdit, Product newProductVersion)
         {
+            if (productToEdit.GetType() != newProductVersion.GetType())
+                return false;
+
             int indexOfProductToEdit = _products.IndexOf(productToEdit);
 
             if (indexOfProductToEdit == -1)

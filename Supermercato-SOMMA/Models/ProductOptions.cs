@@ -12,8 +12,6 @@ namespace Supermercato_SOMMA.Models
         public string? Brand { get; set; }
         public ProductCategory Category { get; set; }
         public float Price { get; set; }
-        public float? Weight { get; set; }
-        public DateTime ExpiringDate { get; set; }
         public uint DiscountPercentage { get; set; }
         public uint Stock { get; set; }
     }

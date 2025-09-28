@@ -13,19 +13,15 @@ namespace Supermercato_SOMMA.Models
         private string? _brand;
         private ProductCategory _category;
         private float _price;
-        private float? _weight;
-        private DateTime _expiringDate;
         private uint _discountPercentage;
         private uint _stock;
 
-        public Product(ProductOptions options)
+        protected Product(ProductOptions options)
         {
             Name = options.Name;
             Brand = options.Brand;
             Category = options.Category;
             Price = options.Price;
-            Weight = options.Weight;
-            ExpiringDate = options.ExpiringDate;
             DiscountPercentage = options.DiscountPercentage;
             Stock = options.Stock;
             _code = CreateCode();
@@ -73,35 +69,6 @@ namespace Supermercato_SOMMA.Models
                     throw new ArgumentException("The product's price must be a positive value.");
 
                 _price = value;
-            }
-        }
-
-        public float? Weight
-        {
-            get => _weight;
-            private set
-            {
-                if (value is null)
-                    _weight = value;
-                else if (value <= 0 || value > 99)
-                    throw new ArgumentException("The product's weight must be positive and less than 100kg.");
-                else
-                    _weight = value;
-
-            }
-        }
-
-        public DateTime ExpiringDate
-        {
-            get => _expiringDate;
-            private set
-            {
-                DateTime minimumDate = new DateTime(2020, 1, 1);
-
-                if (value < minimumDate)
-                    throw new ArgumentOutOfRangeException($"The expiring date must be after {minimumDate.ToString()}");
-
-                _expiringDate = value;
             }
         }
 
