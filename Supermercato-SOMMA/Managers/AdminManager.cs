@@ -42,8 +42,6 @@ namespace Supermercato_SOMMA.Managers
             if (indexOfProductToEdit == -1)
                 return false;
 
-            // FIXME: SE PRODOTTO E' MOLTO SIMILE NON CAMBIARE CODICE
-
             _products[indexOfProductToEdit] = newProductVersion;
             return true;
         }

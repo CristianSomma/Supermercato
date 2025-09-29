@@ -160,6 +160,7 @@ namespace Supermercato_SOMMA
                 new Control[] { lbl_nonFoodProperties, pnl_nonFoodProperties, btn_addNonFoodProduct }
                 );
         }
+
     }
 
 }
