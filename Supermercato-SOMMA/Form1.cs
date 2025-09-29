@@ -1,6 +1,7 @@
 using Supermercato_SOMMA.Managers;
 using Supermercato_SOMMA.Models;
 using System.CodeDom;
+using System.ComponentModel;
 
 namespace Supermercato_SOMMA
 {
@@ -11,115 +12,154 @@ namespace Supermercato_SOMMA
         public AdminForm()
         {
             InitializeComponent();
+        }
+
+        private void AdminForm_Load(object sender, EventArgs e)
+        {
             _adminManager = new AdminManager();
-            TableSetup();
-            SetPropertiesBoxVisibility(VisibilityStatus.HideBoth);
+            Utilities.TableSetup(dtg_adminTable, _adminManager.Products);
+            ChangePropertiesPanelsVisibility(VisibilityStatus.HideBoth);
+            Utilities.ComboBoxSetup(cmb_productCategory, Enum.GetValues(typeof(ProductCategory)).Cast<ProductCategory>().ToArray());
         }
 
-        private void TableSetup()
-        {
-            dtg_adminTable.DataSource = _adminManager.Products;
-            dtg_adminTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            for (int i = 0; i<dtg_adminTable.Columns.Count; i++)
-            {
-                DataGridViewColumn currentColumn = dtg_adminTable.Columns[i];
-
-                SetColumnWidthAndFormat(currentColumn);
-                currentColumn.HeaderText = SplitOnCapitalLetters(currentColumn.HeaderText);
-            }
-
-        }
-
-        private void SetColumnWidthAndFormat(DataGridViewColumn column)
-        {
-            Type columnDataType = column.ValueType;
-            float percentageToOccupy;
-
-            if (columnDataType == typeof(string))
-                percentageToOccupy = 40;
-            else if (columnDataType == typeof(float))
-            {
-                percentageToOccupy = 20;
-
-                column.DefaultCellStyle.Format = column.HeaderText.ToUpper() == "PRICE"
-                    ? "C2"
-                    : "F2";
-            }
-            else if (columnDataType == typeof(ProductCategory))
-                percentageToOccupy = 30;
-            else if (columnDataType == typeof(uint))
-                percentageToOccupy = 25;
-            else if (columnDataType == typeof(DateTime))
-                percentageToOccupy = 40;
-            else
-                percentageToOccupy = 5;
-
-                column.FillWeight = percentageToOccupy;
-        }
-
-        private string SplitOnCapitalLetters(string stringToSplit)
-        {
-            string result = "";
-
-            foreach(char character in stringToSplit)
-            {
-                if (character > 'A' && character < 'Z')
-                    result += $" {character}";
-                else
-                    result += character;
-            }
-
-            return result;
-        }
-
-        private void SetPropertiesBoxVisibility(VisibilityStatus visibility = VisibilityStatus.HideBoth)
-        {
-            bool foodPropertiesVisible = false;
-            bool nonFoodPropertiesVisible = false;
-
-            switch (visibility)
-            {
-                case VisibilityStatus.HideBoth:
-                    break;
-                case VisibilityStatus.ShowFoodProperties:
-                    foodPropertiesVisible = true;
-                    break;
-                case VisibilityStatus.ShowNonFoodProperties:
-                    nonFoodPropertiesVisible = true;
-                    break;
-            }
-
-            lbl_foodProperties.Visible = foodPropertiesVisible;
-            pnl_foodProperties.Visible = foodPropertiesVisible;
-            lbl_nonFoodProperties.Visible = nonFoodPropertiesVisible;
-            pnl_nonFoodProperties.Visible = nonFoodPropertiesVisible;
-
-            pnl_foodProperties.BringToFront();
-            pnl_nonFoodProperties.BringToFront();
-        }
-        
         private void mni_AddProduct_Click(object sender, EventArgs e)
         {
-            SetPropertiesBoxVisibility(VisibilityStatus.HideBoth);
+            ChangePropertiesPanelsVisibility(VisibilityStatus.HideBoth);
         }
 
         private void mni_foodProduct_Click(object sender, EventArgs e)
         {
-            SetPropertiesBoxVisibility(VisibilityStatus.ShowFoodProperties);
+            ChangePropertiesPanelsVisibility(VisibilityStatus.ShowFoodProperties);
         }
 
         private void mni_nonFoodProduct_Click(object sender, EventArgs e)
         {
-            SetPropertiesBoxVisibility(VisibilityStatus.ShowNonFoodProperties);
+            ChangePropertiesPanelsVisibility(VisibilityStatus.ShowNonFoodProperties);
         }
 
+        private void btn_AddFoodProduct_Click(object sender, EventArgs e)
+        {
+            if (!AreInputsValid())
+                return;
+
+            FoodProduct? newProduct = Utilities.CreateProduct(
+                GetProductOptions(),
+                (float)(nmr_productWeight.Value),
+                dtm_productExpiringDate.Value);
+
+            if (newProduct != null)
+                _adminManager.AddProduct(newProduct);
+
+            Utilities.ResetAllInputFields(pnl_addControlsContainer);
+            ChangePropertiesPanelsVisibility(VisibilityStatus.HideBoth);
+        }
+
+        private void btn_addNonFoodProduct_Click(object sender, EventArgs e)
+        {
+            if (!AreInputsValid())
+                return;
+
+            NonFoodProduct? newProduct = Utilities.CreateProduct(
+                GetProductOptions(),
+                chc_productFragile.Checked,
+                (uint)nmr_productAgeRestriction.Value
+                );
+
+            if (newProduct != null)
+                _adminManager.AddProduct(newProduct);
+
+            Utilities.ResetAllInputFields(pnl_addControlsContainer);
+            ChangePropertiesPanelsVisibility(VisibilityStatus.HideBoth);
+        }
+
+        private void chc_productIsDiscounted_CheckedChanged(object sender, EventArgs e)
+        {
+            bool discountPercentageVisible = true;
+
+            if (!chc_productIsDiscounted.Checked)
+                discountPercentageVisible = false;
+
+            lbl_productDiscountPercentage.Visible = discountPercentageVisible;
+            nmr_productDiscountPercentage.Visible = discountPercentageVisible;
+        }
+
+        private bool AreInputsValid()
+        {
+            if (string.IsNullOrWhiteSpace(txt_productName.Text))
+            {
+                Utilities.SetTextInputFeedback(txt_productName);
+                MessageBox.Show(
+                    "The name field cannot be empty or just whitespaces.",
+                    "PRODUCT NAME NOT VALID",
+                    MessageBoxButtons.OK
+                    );
+                return false;
+            }
+
+            if (cmb_productCategory.SelectedIndex == 0)
+            {
+                Utilities.SetTextInputFeedback(cmb_productCategory);
+                MessageBox.Show(
+                    "Select a category of product",
+                    "PRODUCT CATEGORY NOT VALID",
+                    MessageBoxButtons.OK
+                    );
+                return false;
+            }
+
+            return true;
+        }
+
+        private ProductOptions GetProductOptions()
+        {
+
+            string name = txt_productName.Text.ToUpper();
+            string? brand = (txt_productBrand.Text == "")
+                ? null
+                : txt_productBrand.Text.ToUpper();
+
+            ProductCategory category = (ProductCategory)(cmb_productCategory.SelectedItem is null
+                ? ProductCategory.SelectCategory
+                : cmb_productCategory.SelectedItem);
+
+            float price = (float)(nmr_productPrice.Value);
+
+            uint discountPercentage = (uint)(chc_productIsDiscounted.Checked
+                ? nmr_productDiscountPercentage.Value
+                : 0);
+            uint stock = (uint)(nmr_productStock.Value);
+
+            ProductOptions newProductOptions = new ProductOptions()
+            {
+                Name = name,
+                Brand = brand,
+                Category = category,
+                Price = price,
+                DiscountPercentage = discountPercentage,
+                Stock = stock
+            };
+
+            return newProductOptions;
+        }
+
+        private void cmb_productCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = cmb_productCategory.SelectedIndex;
+
+            if (selectedIndex > 0 && selectedIndex < 4)
+                mni_foodProduct_Click(mni_foodProduct, e);
+            else if (selectedIndex >= 4 && selectedIndex <= 7)
+                mni_nonFoodProduct_Click(mni_nonFoodProduct, e);
+        }
+
+        private void ChangePropertiesPanelsVisibility(VisibilityStatus visibility)
+        {
+            Utilities.SetPropertiesBoxVisibility(
+                visibility,
+                new Control[] { lbl_foodProperties, pnl_foodProperties, btn_AddFoodProduct },
+                new Control[] { lbl_nonFoodProperties, pnl_nonFoodProperties, btn_addNonFoodProduct }
+                );
+        }
     }
 
-    public enum VisibilityStatus
-    {
-        HideBoth,
-        ShowFoodProperties,
-        ShowNonFoodProperties
-    }
 }
