@@ -19,6 +19,12 @@ namespace Supermercato_SOMMA.Managers
             _fileManager = new FileManager("../products.json");
         }
 
+        public AdminManager(BindingList<Product> list)
+        {
+            _products = list;
+            _fileManager = new FileManager("../products.json");
+        }
+
         public BindingList<Product> Products
         {
             get => _products;

@@ -30,33 +30,36 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            btn_adminDashboard = new Button();
             label1 = new Label();
             dtg_clientTable = new DataGridView();
             pnl_container = new Panel();
-            label3 = new Label();
-            panel2 = new Panel();
-            cmb_selectedProduct = new ComboBox();
+            panel4 = new Panel();
+            btn_pay = new Button();
+            label5 = new Label();
+            lbl_totalPrice = new Label();
+            btn_addProduct = new Button();
+            label4 = new Label();
             label2 = new Label();
             panel3 = new Panel();
             nmr_productQuantity = new NumericUpDown();
-            label4 = new Label();
-            btn_addProduct = new Button();
-            panel4 = new Panel();
-            lbl_totalPrice = new Label();
-            label5 = new Label();
-            btn_pay = new Button();
+            label3 = new Label();
+            panel2 = new Panel();
+            cmb_selectedProduct = new ComboBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtg_clientTable).BeginInit();
             pnl_container.SuspendLayout();
-            panel2.SuspendLayout();
+            panel4.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmr_productQuantity).BeginInit();
-            panel4.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(btn_adminDashboard);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
@@ -64,6 +67,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1232, 150);
             panel1.TabIndex = 0;
+            // 
+            // btn_adminDashboard
+            // 
+            btn_adminDashboard.Location = new Point(1042, 0);
+            btn_adminDashboard.Name = "btn_adminDashboard";
+            btn_adminDashboard.Size = new Size(190, 48);
+            btn_adminDashboard.TabIndex = 1;
+            btn_adminDashboard.Text = "Admin";
+            btn_adminDashboard.UseVisualStyleBackColor = true;
+            btn_adminDashboard.Click += btn_adminDashboard_Click;
             // 
             // label1
             // 
@@ -86,27 +99,35 @@
             dtg_clientTable.BorderStyle = BorderStyle.None;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Tahoma", 16.2F);
+            dataGridViewCellStyle1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dtg_clientTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dtg_clientTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dtg_clientTable.DefaultCellStyle = dataGridViewCellStyle2;
             dtg_clientTable.Dock = DockStyle.Left;
             dtg_clientTable.GridColor = SystemColors.ControlDarkDark;
             dtg_clientTable.Location = new Point(0, 150);
             dtg_clientTable.MultiSelect = false;
             dtg_clientTable.Name = "dtg_clientTable";
             dtg_clientTable.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Tahoma", 16.2F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dtg_clientTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dtg_clientTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dtg_clientTable.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dtg_clientTable.ScrollBars = ScrollBars.Vertical;
             dtg_clientTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -129,33 +150,67 @@
             pnl_container.Size = new Size(335, 740);
             pnl_container.TabIndex = 3;
             // 
-            // label3
+            // panel4
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Tahoma", 10.2F, FontStyle.Italic);
-            label3.Location = new Point(17, 80);
-            label3.Name = "label3";
-            label3.Size = new Size(122, 21);
-            label3.TabIndex = 5;
-            label3.Text = "Select product:";
+            panel4.BackColor = SystemColors.MenuBar;
+            panel4.Controls.Add(btn_pay);
+            panel4.Controls.Add(label5);
+            panel4.Controls.Add(lbl_totalPrice);
+            panel4.Font = new Font("Tahoma", 13.8F);
+            panel4.Location = new Point(0, 539);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(335, 200);
+            panel4.TabIndex = 9;
             // 
-            // panel2
+            // btn_pay
             // 
-            panel2.BackColor = SystemColors.MenuBar;
-            panel2.Controls.Add(cmb_selectedProduct);
-            panel2.Font = new Font("Tahoma", 13.8F);
-            panel2.Location = new Point(17, 104);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(300, 60);
-            panel2.TabIndex = 4;
+            btn_pay.Location = new Point(17, 124);
+            btn_pay.Name = "btn_pay";
+            btn_pay.Size = new Size(300, 65);
+            btn_pay.TabIndex = 2;
+            btn_pay.Text = "Pay";
+            btn_pay.UseVisualStyleBackColor = true;
+            btn_pay.Click += this.btn_pay_Click;
             // 
-            // cmb_selectedProduct
+            // label5
             // 
-            cmb_selectedProduct.FormattingEnabled = true;
-            cmb_selectedProduct.Location = new Point(25, 10);
-            cmb_selectedProduct.Name = "cmb_selectedProduct";
-            cmb_selectedProduct.Size = new Size(250, 36);
-            cmb_selectedProduct.TabIndex = 4;
+            label5.AutoSize = true;
+            label5.Font = new Font("Tahoma", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(17, 20);
+            label5.Name = "label5";
+            label5.Size = new Size(42, 48);
+            label5.TabIndex = 1;
+            label5.Text = "€";
+            // 
+            // lbl_totalPrice
+            // 
+            lbl_totalPrice.AutoSize = true;
+            lbl_totalPrice.Font = new Font("Tahoma", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_totalPrice.Location = new Point(65, 20);
+            lbl_totalPrice.Name = "lbl_totalPrice";
+            lbl_totalPrice.Size = new Size(98, 48);
+            lbl_totalPrice.TabIndex = 0;
+            lbl_totalPrice.Text = "0.00";
+            // 
+            // btn_addProduct
+            // 
+            btn_addProduct.Location = new Point(17, 316);
+            btn_addProduct.Name = "btn_addProduct";
+            btn_addProduct.Size = new Size(300, 68);
+            btn_addProduct.TabIndex = 10;
+            btn_addProduct.Text = "Add";
+            btn_addProduct.UseVisualStyleBackColor = true;
+            btn_addProduct.Click += btn_addProduct_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Tahoma", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(17, 25);
+            label4.Name = "label4";
+            label4.Size = new Size(106, 34);
+            label4.TabIndex = 9;
+            label4.Text = "Order:";
             // 
             // label2
             // 
@@ -188,65 +243,33 @@
             nmr_productQuantity.TextAlign = HorizontalAlignment.Center;
             nmr_productQuantity.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
-            // label4
+            // label3
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Tahoma", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(17, 25);
-            label4.Name = "label4";
-            label4.Size = new Size(106, 34);
-            label4.TabIndex = 9;
-            label4.Text = "Order:";
+            label3.AutoSize = true;
+            label3.Font = new Font("Tahoma", 10.2F, FontStyle.Italic);
+            label3.Location = new Point(17, 80);
+            label3.Name = "label3";
+            label3.Size = new Size(122, 21);
+            label3.TabIndex = 5;
+            label3.Text = "Select product:";
             // 
-            // btn_addProduct
+            // panel2
             // 
-            btn_addProduct.Location = new Point(17, 316);
-            btn_addProduct.Name = "btn_addProduct";
-            btn_addProduct.Size = new Size(300, 68);
-            btn_addProduct.TabIndex = 10;
-            btn_addProduct.Text = "Add";
-            btn_addProduct.UseVisualStyleBackColor = true;
+            panel2.BackColor = SystemColors.MenuBar;
+            panel2.Controls.Add(cmb_selectedProduct);
+            panel2.Font = new Font("Tahoma", 13.8F);
+            panel2.Location = new Point(17, 104);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(300, 60);
+            panel2.TabIndex = 4;
             // 
-            // panel4
+            // cmb_selectedProduct
             // 
-            panel4.BackColor = SystemColors.MenuBar;
-            panel4.Controls.Add(btn_pay);
-            panel4.Controls.Add(label5);
-            panel4.Controls.Add(lbl_totalPrice);
-            panel4.Font = new Font("Tahoma", 13.8F);
-            panel4.Location = new Point(0, 539);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(335, 200);
-            panel4.TabIndex = 9;
-            // 
-            // lbl_totalPrice
-            // 
-            lbl_totalPrice.AutoSize = true;
-            lbl_totalPrice.Font = new Font("Tahoma", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_totalPrice.Location = new Point(65, 20);
-            lbl_totalPrice.Name = "lbl_totalPrice";
-            lbl_totalPrice.Size = new Size(98, 48);
-            lbl_totalPrice.TabIndex = 0;
-            lbl_totalPrice.Text = "0.00";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Tahoma", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(17, 20);
-            label5.Name = "label5";
-            label5.Size = new Size(42, 48);
-            label5.TabIndex = 1;
-            label5.Text = "€";
-            // 
-            // btn_pay
-            // 
-            btn_pay.Location = new Point(17, 124);
-            btn_pay.Name = "btn_pay";
-            btn_pay.Size = new Size(300, 65);
-            btn_pay.TabIndex = 2;
-            btn_pay.Text = "Pay";
-            btn_pay.UseVisualStyleBackColor = true;
+            cmb_selectedProduct.FormattingEnabled = true;
+            cmb_selectedProduct.Location = new Point(25, 10);
+            cmb_selectedProduct.Name = "cmb_selectedProduct";
+            cmb_selectedProduct.Size = new Size(250, 36);
+            cmb_selectedProduct.TabIndex = 4;
             // 
             // ClientForm
             // 
@@ -258,17 +281,20 @@
             Controls.Add(panel1);
             Font = new Font("Tahoma", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(6, 5, 6, 5);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "ClientForm";
             Text = "Client";
+            Load += ClientForm_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtg_clientTable).EndInit();
             pnl_container.ResumeLayout(false);
             pnl_container.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)nmr_productQuantity).EndInit();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
+            panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)nmr_productQuantity).EndInit();
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -290,5 +316,6 @@
         private Label label4;
         private Button btn_pay;
         private Label label5;
+        private Button btn_adminDashboard;
     }
 }

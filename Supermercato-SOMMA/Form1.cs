@@ -11,15 +11,14 @@ namespace Supermercato_SOMMA
         private AdminManager _adminManager;
         private VisualManager _visualManager;
 
-        public AdminForm()
+        public AdminForm(BindingList<Product> productsList)
         {
             InitializeComponent();
+            _adminManager = new AdminManager(productsList);
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
         {
-            _adminManager = new AdminManager();
-            _adminManager.RetrieveSavedProducts();
             _visualManager = new VisualManager(this);
 
             if (_adminManager.Products.Count > 0)

@@ -1,3 +1,5 @@
+using Supermercato_SOMMA.Managers;
+
 namespace Supermercato_SOMMA
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace Supermercato_SOMMA
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new AdminForm());
+            Application.Run(new ClientForm());
         }
     }
 }
