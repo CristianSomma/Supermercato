@@ -2,6 +2,7 @@ using Supermercato_SOMMA.Managers;
 using Supermercato_SOMMA.Models;
 using System.CodeDom;
 using System.ComponentModel;
+using System.Globalization;
 
 namespace Supermercato_SOMMA
 {
@@ -18,26 +19,43 @@ namespace Supermercato_SOMMA
         private void AdminForm_Load(object sender, EventArgs e)
         {
             _adminManager = new AdminManager();
+            _adminManager.RetrieveSavedProducts();
             _visualManager = new VisualManager(this);
-            _visualManager.SetControlStatus(true, mni_editProduct, mni_deleteProduct);
-            Utilities.TableSetup(dtg_adminTable, _adminManager.Products);
-            ChangePropertiesPanelsVisibility(VisibilityStatus.HideBoth);
-            Utilities.ComboBoxSetup(cmb_productCategory, Enum.GetValues(typeof(ProductCategory)).Cast<ProductCategory>().ToArray());
+
+            if (_adminManager.Products.Count > 0)
+                _visualManager.SetControlStatus(false, mni_editProduct, mni_deleteProduct);
+            else
+                _visualManager.SetControlStatus(false, mni_editProduct, mni_deleteProduct);
+
+            _visualManager.TableSetup(dtg_adminTable, _adminManager.Products);
+            SetPropertiesPanelsVisibility(VisibilityStatus.HideBoth);
+            _visualManager.ComboBoxSetup(cmb_productCategory, Enum.GetValues(typeof(ProductCategory)).Cast<ProductCategory>().ToArray());
+        }
+
+        private void SetupAddProductControls()
+        {
+            SetPropertiesPanelsVisibility(VisibilityStatus.HideBoth);
+
+            if (pnl_addProduct.Visible)
+                return;
+
+            _visualManager.ShowControlsPanel(VisibilityStatus.HideBoth, pnl_addProduct, pnl_editProduct);
+            _visualManager.ComboBoxSetup(cmb_productCategory, Enum.GetValues(typeof(ProductCategory)).Cast<ProductCategory>().ToArray());
         }
 
         private void mni_AddProduct_Click(object sender, EventArgs e)
         {
-            ChangePropertiesPanelsVisibility(VisibilityStatus.HideBoth);
+            SetupAddProductControls();
         }
 
         private void mni_foodProduct_Click(object sender, EventArgs e)
         {
-            ChangePropertiesPanelsVisibility(VisibilityStatus.ShowFoodProperties);
+            SetPropertiesPanelsVisibility(VisibilityStatus.ShowFoodProperties);
         }
 
         private void mni_nonFoodProduct_Click(object sender, EventArgs e)
         {
-            ChangePropertiesPanelsVisibility(VisibilityStatus.ShowNonFoodProperties);
+            SetPropertiesPanelsVisibility(VisibilityStatus.ShowNonFoodProperties);
         }
 
         private void btn_AddFoodProduct_Click(object sender, EventArgs e)
@@ -53,8 +71,8 @@ namespace Supermercato_SOMMA
             if (newProduct != null)
                 _adminManager.AddProduct(newProduct);
 
-            Utilities.ResetAllInputFields(pnl_addProduct);
-            ChangePropertiesPanelsVisibility(VisibilityStatus.HideBoth);
+            _visualManager.ResetAllInputFields(pnl_addProduct);
+            SetPropertiesPanelsVisibility(VisibilityStatus.HideBoth);
             _visualManager.SetControlStatus(false, mni_editProduct, mni_deleteProduct);
         }
 
@@ -72,8 +90,8 @@ namespace Supermercato_SOMMA
             if (newProduct != null)
                 _adminManager.AddProduct(newProduct);
 
-            Utilities.ResetAllInputFields(pnl_addProduct);
-            ChangePropertiesPanelsVisibility(VisibilityStatus.HideBoth);
+            _visualManager.ResetAllInputFields(pnl_addProduct);
+            SetPropertiesPanelsVisibility(VisibilityStatus.HideBoth);
             _visualManager.SetControlStatus(false, mni_editProduct, mni_deleteProduct);
         }
 
@@ -92,7 +110,7 @@ namespace Supermercato_SOMMA
         {
             if (string.IsNullOrWhiteSpace(txt_productName.Text))
             {
-                Utilities.SetTextInputFeedback(txt_productName);
+                _visualManager.SetTextInputFeedback(txt_productName);
                 MessageBox.Show(
                     "The name field cannot be empty or just whitespaces.",
                     "PRODUCT NAME NOT VALID",
@@ -103,7 +121,7 @@ namespace Supermercato_SOMMA
 
             if (cmb_productCategory.SelectedIndex == 0)
             {
-                Utilities.SetTextInputFeedback(cmb_productCategory);
+                _visualManager.SetTextInputFeedback(cmb_productCategory);
                 MessageBox.Show(
                     "Select a category of product",
                     "PRODUCT CATEGORY NOT VALID",
@@ -157,9 +175,9 @@ namespace Supermercato_SOMMA
                 mni_nonFoodProduct_Click(mni_nonFoodProduct, e);
         }
 
-        private void ChangePropertiesPanelsVisibility(VisibilityStatus visibility)
+        private void SetPropertiesPanelsVisibility(VisibilityStatus visibility)
         {
-            Utilities.SetPropertiesBoxVisibility(
+            _visualManager.SetPropertiesBoxVisibility(
                 visibility,
                 new Control[] { lbl_foodProperties, pnl_foodProperties, btn_AddFoodProduct },
                 new Control[] { lbl_nonFoodProperties, pnl_nonFoodProperties, btn_addNonFoodProduct }
@@ -170,7 +188,120 @@ namespace Supermercato_SOMMA
         {
             _visualManager.ShowControlsPanel(VisibilityStatus.HideBoth, pnl_editProduct, pnl_addProduct);
             _visualManager.SetControlAbsoluteLocation(pnl_editProduct, pnl_addProduct.Location);
-            Utilities.ComboBoxSetup(cmb_productEditSelected, _adminManager.Products, "Name");
+            _visualManager.ComboBoxSetup(cmb_productEditSelected, _adminManager.Products, "Name", -1);
+        }
+
+        private void cmb_productEditSelected_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = cmb_productEditSelected.SelectedIndex;
+
+            if (selectedIndex == -1)
+                return;
+
+            Product selectedProduct = _adminManager.Products[selectedIndex];
+
+            lbl_productBrandImmutable.Text = selectedProduct.Brand;
+            lbl_productCategoryImmutable.Text = selectedProduct.Category.ToString();
+            lbl_productStockImmutable.Text = selectedProduct.Stock.ToString();
+            SetProductPropertyField(selectedProduct);
+            nmr_productPriceEdit.Value = (decimal)selectedProduct.Price;
+        
+            if(selectedProduct.DiscountPercentage > 0)
+                nmr_productPercentageEdit.Value = selectedProduct.DiscountPercentage;
+        }
+
+        private void SetProductPropertyField(Product product)
+        {
+            bool isFoodProduct = Utilities.IsFoodProduct(product);
+            string labelValue, fieldValue;
+            VisibilityStatus visibility;
+
+            if (isFoodProduct)
+            {
+                FoodProduct convertedProduct = (FoodProduct)product;
+
+                labelValue = "Expiring date:";
+                fieldValue = convertedProduct.ExpiringDate.ToString("dd-MM-yyyy");
+                visibility = VisibilityStatus.ShowFoodProperties;
+                nmr_productWeightEdit.Value = (decimal)convertedProduct.Weight;
+            }
+            else
+            {
+                NonFoodProduct convertedProduct = (NonFoodProduct)product;
+
+                labelValue = "Age restriction:";
+                fieldValue = convertedProduct.AgeRestriction.ToString();
+                visibility = VisibilityStatus.ShowNonFoodProperties;
+                chc_productFragileEdit.Checked = convertedProduct.Fragile;
+            }
+
+            lbl_dateOrAgeEdit.Text = labelValue;
+            lbl_productDateOrAgeImmutable.Text = fieldValue;
+            _visualManager.SetPropertiesBoxVisibility(visibility, new Control[] { pnl_foodProductEdit }, new Control[] { pnl_nonFoodProductEdit });
+        }
+
+        private void AdminForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _adminManager.SaveProducts();
+        }
+
+        private void btn_productEdit_Click(object sender, EventArgs e)
+        {
+            int selectedItemIndex = cmb_productEditSelected.SelectedIndex;
+
+            if (selectedItemIndex == -1)
+                return;
+
+            Product product = _adminManager.Products[selectedItemIndex];
+
+            ProductOptions options = new ProductOptions()
+            {
+                Name = product.Name,
+                Brand = product.Brand,
+                Category = product.Category,
+                Stock = product.Stock,
+                Price = (float)nmr_productPriceEdit.Value,
+                DiscountPercentage = (uint)(chc_productDiscountedEdit.Checked 
+                ? nmr_productPercentageEdit.Value 
+                : product.DiscountPercentage)
+            };
+
+            if (Utilities.IsFoodProduct(product))
+            {
+                FoodProduct productToEdit = (FoodProduct)product;
+
+                FoodProduct? foodProduct = Utilities.CreateProduct(
+                    options,
+                    (float)nmr_productWeightEdit.Value,
+                    DateTime.ParseExact(lbl_productDateOrAgeImmutable.Text, "dd-MM-yyyy", CultureInfo.InvariantCulture)
+                    );
+
+                _adminManager.EditProduct(productToEdit, foodProduct);
+            }
+            else
+            {
+                NonFoodProduct productToEdit = (NonFoodProduct)product;
+
+                NonFoodProduct? foodProduct = Utilities.CreateProduct(
+                    options,
+                    chc_productDiscountedEdit.Checked,
+                    uint.Parse(lbl_productDateOrAgeImmutable.Text)
+                    );
+
+                _adminManager.EditProduct(productToEdit, foodProduct);
+            }
+        }
+
+        private void chc_productDiscountedEdit_CheckedChanged(object sender, EventArgs e)
+        {
+            bool discountPercentageVisible = true;
+
+            if (!chc_productDiscountedEdit.Checked)
+                discountPercentageVisible = false;
+
+            lbl_percentageEdit.Visible = discountPercentageVisible;
+            nmr_productPercentageEdit.Visible = discountPercentageVisible;
+
         }
     }
 

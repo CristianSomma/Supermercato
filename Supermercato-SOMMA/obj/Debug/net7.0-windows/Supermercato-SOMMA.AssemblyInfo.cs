@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Supermercato-SOMMA")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+582c5d0546c6a63822eb5b7ba2593b3ec661a24e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Supermercato-SOMMA")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Supermercato-SOMMA")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

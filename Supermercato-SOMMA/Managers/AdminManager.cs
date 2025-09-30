@@ -1,5 +1,4 @@
 ﻿using Supermercato_SOMMA.Models;
-using Supermercato_SOMMA.Models.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,10 +11,12 @@ namespace Supermercato_SOMMA.Managers
     public class AdminManager
     {
         private readonly BindingList<Product> _products;
+        private FileManager _fileManager;
 
         public AdminManager()
         {
             _products = new BindingList<Product>();
+            _fileManager = new FileManager("../products.json");
         }
 
         public BindingList<Product> Products
@@ -29,6 +30,7 @@ namespace Supermercato_SOMMA.Managers
                 return false;
 
             _products.Add(productToAdd);
+            _fileManager.SerializeProduct(productToAdd);
             return true;
         }
 
@@ -49,6 +51,16 @@ namespace Supermercato_SOMMA.Managers
         public bool RemoveProduct(Product productToRemove)
         {
             return _products.Remove(productToRemove);
+        }
+
+        public void SaveProducts()
+        {
+            _fileManager.SerializeAllProducts(_products);
+        }
+
+        public void RetrieveSavedProducts()
+        {
+            _fileManager.DeserializeProducts(_products);
         }
 
     }

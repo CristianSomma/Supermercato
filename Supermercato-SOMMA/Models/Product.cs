@@ -3,6 +3,7 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Supermercato_SOMMA.Models
@@ -15,6 +16,11 @@ namespace Supermercato_SOMMA.Models
         private float _price;
         private uint _discountPercentage;
         private uint _stock;
+
+        protected Product()
+        {
+
+        }
 
         protected Product(ProductOptions options)
         {
@@ -30,7 +36,7 @@ namespace Supermercato_SOMMA.Models
         public string Name
         {
             get => _name;
-            private set
+            set
             {
                 if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentNullException("The product name cannot be null or just white spaces.");
@@ -42,7 +48,7 @@ namespace Supermercato_SOMMA.Models
         public string? Brand
         {
             get => _brand;
-            private set
+            set
             {
                 _brand = value?.ToUpper();
             }
@@ -51,7 +57,7 @@ namespace Supermercato_SOMMA.Models
         public ProductCategory Category
         {
             get => _category;
-            private set
+            set
             {
                 if (value == ProductCategory.SelectCategory)
                     throw new ArgumentException("The standard category isn't valid.");
@@ -63,7 +69,7 @@ namespace Supermercato_SOMMA.Models
         public float Price
         {
             get => _price;
-            private set
+            set
             {
                 if (value <= 0)
                     throw new ArgumentException("The product's price must be a positive value.");
@@ -75,7 +81,7 @@ namespace Supermercato_SOMMA.Models
         public uint DiscountPercentage
         {
             get => _discountPercentage;
-            private set
+            set
             {
                 if (value > 100)
                     throw new ArgumentException("The discount percentage must be a positive value and between 0 and 100.");
@@ -87,7 +93,7 @@ namespace Supermercato_SOMMA.Models
         public uint Stock
         {
             get => _stock;
-            private set
+            set
             {
                 _stock = value;
             }
@@ -96,6 +102,10 @@ namespace Supermercato_SOMMA.Models
         public string Code
         {
             get => _code;
+            set
+            {
+                _code = value;
+            }
         }
 
         private string CreateCode()

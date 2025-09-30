@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Supermercato_SOMMA.Models
@@ -10,6 +11,11 @@ namespace Supermercato_SOMMA.Models
     {
         private float _weight;
         private DateTime _expiringDate;
+
+        public FoodProduct() : base()
+        {
+
+        }
 
         public FoodProduct(ProductOptions options, float weight, DateTime expiringDate) 
             : base(options)
@@ -21,7 +27,7 @@ namespace Supermercato_SOMMA.Models
         public float Weight
         {
             get => _weight;
-            private set
+            set
             {
                 if (value <= 0 || value > 99)
                     throw new ArgumentException("The product's weight must be positive and less than 100kg.");
@@ -33,7 +39,7 @@ namespace Supermercato_SOMMA.Models
         public DateTime ExpiringDate
         {
             get => _expiringDate;
-            private set
+            set
             {
                 DateTime minimumDate = new DateTime(2020, 1, 1);
 
