@@ -8,6 +8,7 @@ namespace Supermercato_SOMMA
     public partial class AdminForm : Form
     {
         private AdminManager _adminManager;
+        private VisualManager _visualManager;
 
         public AdminForm()
         {
@@ -17,6 +18,8 @@ namespace Supermercato_SOMMA
         private void AdminForm_Load(object sender, EventArgs e)
         {
             _adminManager = new AdminManager();
+            _visualManager = new VisualManager(this);
+            _visualManager.SetControlStatus(true, mni_editProduct, mni_deleteProduct);
             Utilities.TableSetup(dtg_adminTable, _adminManager.Products);
             ChangePropertiesPanelsVisibility(VisibilityStatus.HideBoth);
             Utilities.ComboBoxSetup(cmb_productCategory, Enum.GetValues(typeof(ProductCategory)).Cast<ProductCategory>().ToArray());
@@ -50,8 +53,9 @@ namespace Supermercato_SOMMA
             if (newProduct != null)
                 _adminManager.AddProduct(newProduct);
 
-            Utilities.ResetAllInputFields(pnl_addControlsContainer);
+            Utilities.ResetAllInputFields(pnl_addProduct);
             ChangePropertiesPanelsVisibility(VisibilityStatus.HideBoth);
+            _visualManager.SetControlStatus(false, mni_editProduct, mni_deleteProduct);
         }
 
         private void btn_addNonFoodProduct_Click(object sender, EventArgs e)
@@ -68,8 +72,9 @@ namespace Supermercato_SOMMA
             if (newProduct != null)
                 _adminManager.AddProduct(newProduct);
 
-            Utilities.ResetAllInputFields(pnl_addControlsContainer);
+            Utilities.ResetAllInputFields(pnl_addProduct);
             ChangePropertiesPanelsVisibility(VisibilityStatus.HideBoth);
+            _visualManager.SetControlStatus(false, mni_editProduct, mni_deleteProduct);
         }
 
         private void chc_productIsDiscounted_CheckedChanged(object sender, EventArgs e)
@@ -161,6 +166,12 @@ namespace Supermercato_SOMMA
                 );
         }
 
+        private void mni_editProduct_Click(object sender, EventArgs e)
+        {
+            _visualManager.ShowControlsPanel(VisibilityStatus.HideBoth, pnl_editProduct, pnl_addProduct);
+            _visualManager.SetControlAbsoluteLocation(pnl_editProduct, pnl_addProduct.Location);
+            Utilities.ComboBoxSetup(cmb_productEditSelected, _adminManager.Products, "Name");
+        }
     }
 
 }

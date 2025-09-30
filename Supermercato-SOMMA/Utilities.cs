@@ -121,10 +121,13 @@ namespace Supermercato_SOMMA
         }
 
         
-        public static void ComboBoxSetup<T>(ComboBox comboBox, BindingList<T> list, int defaultIndex = 0)
+        public static void ComboBoxSetup<T>(ComboBox comboBox, BindingList<T> list, string displayField)
         {
             comboBox.DataSource = list;
-            comboBox.SelectedIndex = 0;
+            comboBox.SelectedIndex = list[0] is null ? -1 : 0;
+
+            if (typeof(T).GetProperty(displayField) != null)
+                comboBox.DisplayMember = displayField;
         }
 
         public static void ComboBoxSetup<TEnum>(ComboBox comboBox, TEnum[] list, int defaultIndex = 0) where TEnum : Enum

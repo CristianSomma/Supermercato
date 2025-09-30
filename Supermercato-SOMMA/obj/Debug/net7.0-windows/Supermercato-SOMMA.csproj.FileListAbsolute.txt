@@ -1,0 +1,17 @@
+C:\Users\12999453\Source\Repos\Supermercato\Supermercato-SOMMA\bin\Debug\net7.0-windows\Supermercato-SOMMA.exe
+C:\Users\12999453\Source\Repos\Supermercato\Supermercato-SOMMA\bin\Debug\net7.0-windows\Supermercato-SOMMA.deps.json
+C:\Users\12999453\Source\Repos\Supermercato\Supermercato-SOMMA\bin\Debug\net7.0-windows\Supermercato-SOMMA.runtimeconfig.json
+C:\Users\12999453\Source\Repos\Supermercato\Supermercato-SOMMA\bin\Debug\net7.0-windows\Supermercato-SOMMA.dll
+C:\Users\12999453\Source\Repos\Supermercato\Supermercato-SOMMA\bin\Debug\net7.0-windows\Supermercato-SOMMA.pdb
+C:\Users\12999453\Source\Repos\Supermercato\Supermercato-SOMMA\obj\Debug\net7.0-windows\Supermercato-SOMMA.csproj.AssemblyReference.cache
+C:\Users\12999453\Source\Repos\Supermercato\Supermercato-SOMMA\obj\Debug\net7.0-windows\Supermercato_SOMMA.AdminForm.resources
+C:\Users\12999453\Source\Repos\Supermercato\Supermercato-SOMMA\obj\Debug\net7.0-windows\Supermercato-SOMMA.csproj.GenerateResource.cache
+C:\Users\12999453\Source\Repos\Supermercato\Supermercato-SOMMA\obj\Debug\net7.0-windows\Supermercato-SOMMA.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\12999453\Source\Repos\Supermercato\Supermercato-SOMMA\obj\Debug\net7.0-windows\Supermercato-SOMMA.AssemblyInfoInputs.cache
+C:\Users\12999453\Source\Repos\Supermercato\Supermercato-SOMMA\obj\Debug\net7.0-windows\Supermercato-SOMMA.AssemblyInfo.cs
+C:\Users\12999453\Source\Repos\Supermercato\Supermercato-SOMMA\obj\Debug\net7.0-windows\Supermercato-SOMMA.csproj.CoreCompileInputs.cache
+C:\Users\12999453\Source\Repos\Supermercato\Supermercato-SOMMA\obj\Debug\net7.0-windows\Supermercato-SOMMA.dll
+C:\Users\12999453\Source\Repos\Supermercato\Supermercato-SOMMA\obj\Debug\net7.0-windows\refint\Supermercato-SOMMA.dll
+C:\Users\12999453\Source\Repos\Supermercato\Supermercato-SOMMA\obj\Debug\net7.0-windows\Supermercato-SOMMA.pdb
+C:\Users\12999453\Source\Repos\Supermercato\Supermercato-SOMMA\obj\Debug\net7.0-windows\Supermercato-SOMMA.genruntimeconfig.cache
+C:\Users\12999453\Source\Repos\Supermercato\Supermercato-SOMMA\obj\Debug\net7.0-windows\ref\Supermercato-SOMMA.dll
